@@ -7,6 +7,9 @@ import java.io.IOException;
 
 public class Assets {
 
+    public static final String GAME_NAME = "PMC Admin";
+    public static final String GAME_VERSION = "v0.1.0 BETA";
+
     public static int GAME_WIDTH = 1280;
     public static int GAME_HEIGHT = 720;
 
