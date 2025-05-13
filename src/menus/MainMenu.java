@@ -15,7 +15,8 @@ public class MainMenu {
 
     long lastTime = 0;
 
-    AttributedString menuTitle = new AttributedString("PMC Admin");
+    AttributedString menuTitle = new AttributedString(Assets.GAME_NAME);
+    AttributedString menuVersion = new AttributedString(Assets.GAME_VERSION);
     AttributedString menuSubtitle = new AttributedString("A  Morally  Gray  Simulator");
     AttributedString[] menuOptions = {
         new AttributedString("Start Game"),
@@ -29,6 +30,13 @@ public class MainMenu {
         menuTitle.addAttribute(TextAttribute.FONT, Assets.BLOXAT_FONT.deriveFont(150f));
         menuTitle.addAttribute(TextAttribute.FONT, Assets.DELICATUS_FONT.deriveFont(150f), 3, 4);
         menuTitle.addAttribute(TextAttribute.FOREGROUND, new Color(245, 245, 245));
+
+        menuVersion.addAttribute(TextAttribute.FONT, Assets.DELICATUS_FONT.deriveFont(30f));
+        if (Assets.GAME_VERSION.contains("BETA")) {
+            menuVersion.addAttribute(TextAttribute.FOREGROUND, new Color(144, 238, 144));
+        } else {
+            menuVersion.addAttribute(TextAttribute.FOREGROUND, new Color(245, 245, 245));
+        }
 
         menuSubtitle.addAttribute(TextAttribute.FONT, Assets.DELICATUS_FONT.deriveFont(30f));
         menuSubtitle.addAttribute(TextAttribute.FOREGROUND, new Color(245, 245, 245));
@@ -46,14 +54,22 @@ public class MainMenu {
 
         g2.drawString(
             menuTitle.getIterator(),
-            (Assets.GAME_WIDTH - (int) g2.getFontMetrics(Assets.BLOXAT_FONT.deriveFont(150f)).getStringBounds("PMC Admin", g2).getWidth()) / 2,
+            (Assets.GAME_WIDTH - (int) g2.getFontMetrics(Assets.BLOXAT_FONT.deriveFont(150f)).getStringBounds(Assets.GAME_NAME, g2).getWidth()) / 2,
             (Assets.GAME_HEIGHT - 50) / 2 - 60
         );
+
+        g2.drawString(
+            menuVersion.getIterator(),
+            (Assets.GAME_WIDTH - (int) g2.getFontMetrics(Assets.BLOXAT_FONT.deriveFont(150f)).getStringBounds(Assets.GAME_NAME, g2).getWidth() + 10) / 2,
+            (Assets.GAME_HEIGHT - 50) / 2 - 175
+        );
+
         g2.drawString(
             menuSubtitle.getIterator(),
             (Assets.GAME_WIDTH - (int) g2.getFontMetrics(Assets.DELICATUS_FONT.deriveFont(30f)).getStringBounds("A  Morally  Gray  Simulator", g2).getWidth()) / 2,
             (Assets.GAME_HEIGHT - 50) / 2 - 20
         );
+
         for (int i = 0; i < menuOptions.length; i++) {
             TextLayout layout = new TextLayout(menuOptions[i].getIterator(), g2.getFontRenderContext());
             int strWidth = (int) layout.getBounds().getWidth();
