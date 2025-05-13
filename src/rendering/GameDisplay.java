@@ -70,7 +70,7 @@ public class GameDisplay extends JPanel implements Runnable {
 
     public void startGameThread() {
         gameThread = new Thread(this);
-        gameThread.setName("PMC Admin Game Thread");
+        gameThread.setName(Assets.GAME_NAME + " Game");
         gameThread.setPriority(Thread.NORM_PRIORITY);
         lastTime_flicker = System.currentTimeMillis();
         lastTime_frameRate = System.currentTimeMillis();
